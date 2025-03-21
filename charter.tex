@@ -5,32 +5,32 @@
 
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Título del proyecto} 
+\titulo{Predicción del NDVI de cebada con series temporales de Sentinel-2 e Inteligencia Artificial} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
-\posgrado{Carrera de Especialización en Sistemas Embebidos} 
+%\posgrado{Carrera de Especialización en Sistemas Embebidos} 
 %\posgrado{Carrera de Especialización en Internet de las Cosas} 
-%\posgrado{Carrera de Especialización en Inteligencia Artificial}
+\posgrado{Carrera de Especialización en Inteligencia Artificial}
 %\posgrado{Maestría en Sistemas Embebidos} 
 %\posgrado{Maestría en Internet de las cosas}
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
 % IMPORTANTE: no omitir titulaciones ni tildación en los nombres, también se recomienda escribir los nombres completos (tal cual los tienen en su documento)
-\autor{Título y Nombre del autor}
+\autor{Dr. Ing. Agr. Adrián Lapaz Olveira}
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
-\director{Título y Nombre del director}
-\pertenenciaDirector{pertenencia} 
-\codirector{} % para que aparezca en la portada se debe descomentar la opción codirector en los parámetros de documentclass
+\director{Esp. Ing. Maria Carina Roldán}
+\pertenenciaDirector{FIUBA} 
+\codirector{Ing. Ariadna Garmendia} % para que aparezca en la portada se debe descomentar la opción codirector en los parámetros de documentclass
 \pertenenciaCoDirector{FIUBA}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Ph.D. Ing. Agr. Andrés Berger}
+\empresaCliente{INIA}
  
-\fechaINICIO{30 de abril de 2023}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlan{18 de junio de 2023} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de mayo de 2024}	%Fecha de defensa pública del trabajo final
+\fechaINICIO{11 de marzo de 2025}		%Fecha de inicio de la cursada de GdP \fechaInicioName
+\fechaFINALPlan{22 de abril de 2025} 	%Fecha de final de cursada de GdP
+\fechaFINALTrabajo{31 de agosto de 2025}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -85,7 +85,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en \textcolor{red}{la implementación de un prototipo de un sistema de control de temperatura de una caldera industrial}. El trabajo tendrá un presupuesto preliminar estimado de \textcolor{red}{600} horas y un costo estimado de \textcolor{red}{\$ XXX}, con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
+Por medio de la presente se acuerda con el \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'' y consistirá en la predicción temprana del NDVI máximo de los cultivos de cebada, utilizando series temporales de datos Sentinel-2 y modelos de Inteligencia Artificial para las campañas 2023-2025. El trabajo tendrá un presupuesto preliminar estimado de 600 horas y está financiado por un proyecto de Articulación Academia - Sector Productivo de ANNI (INIA - Ambev, UY), con fecha de inicio el \fechaInicioName\hspace{1px} y fecha de presentación pública el \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -100,150 +100,207 @@ Se adjunta a esta acta la planificación inicial.
 \end{tabular}
 \end{table}
 
+\pagebreak
 
 
 
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-El objetivo es que el lector, en una o dos páginas, exponga de qué se trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+Este proyecto será realizado por el Dr. Ing. Agr. Adrián Lapaz Olveira como un requisito curricular de la Especialización en Inteligencia Artificial (FIUBA) y será desarrollado en el marco de su investigación en la inicitiva Articulación Academia - Sector Productivo de ANNI denominada \emph{“Desarrollo e implementación de recomendaciones de manejo dinámicas durante el crecimiento del cultivo, basadas en análisis de la base de datos de campo de AB-InBev”}. El desarrollo del proyecto será bajo la dirección de la \supname y la codirección de la \cosupname; ambas docentes de dicha especialización, y la colaboración de investigadores de INIA; PhD. MSc. Ing. Agr. Andrés Berger (cliente), PhD. MSc. Ing. Agr. José Paruelo y Dr. Ing. Agr. Sebastian Mazzilli.
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cuál es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+\subsection{Antecedentes}
+\label{sec:descripcion}
+La producción de cebada (\emph{Hordeum vulgare L.}) con destino industrial tiene como objetivo maximizar el rendimiento con una concentración de proteína en grano del 9 al 12 \%. Para alcanzar este objetivo, se requiere de un diagnóstico nutricional que sea preciso; evitar sub o sobredosis de fertilizantes, y temprano; crecimiento sin restricciones. No obstante, la principal dificultad para alcanzar este objetivo es la falta de precisión en el diagnóstico actual, ya que, al estar basado en determinaciones a la siembra, emergencia y/o estadíos iniciales del cultivo, éste no contempla cómo los factores climáticos afectan el crecimiento de plantas, generando cambios en el rendimiento potencial y en la demanda nutricional futura. Por lo tanto, el diagnóstico nutricional actual de cebada demanda herramientas complementarias que permitan proyectar el crecimiento potencial del cultivo. 
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+Una de las herramientas calibradas para proyectar el crecimiento de los cultivos es la función $\beta$. Al modelar la acumulación de biomasa según los días desde la siembra (DDS), sus parámetros son biológicamente interpretables facilitando su adpoción en modelos de similación de cultivos. Sin embargo, su parametrización demanda determinaciones de biomasa durante el desarrollo fenólogico siendo esto una desventaja para su adopción por parte de los productores y asesores. La determinación de la biomasa consiste en colectar plantas a campo para luego secarlas en laboratorio, por consiguiente, su imperatividad demanda mucho tiempo, es costosa y tiene limitada representativadad a escala de chacra. Por lo tanto, el uso de indicadores relacionados a la biomasa permitiría proyectar el crecimiento del cultivo a través del ajuste de una función $\beta$ y en consecuencia, predecir la demanda nutricional futura.
 
-\begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
-\end{itemize}
+La disponibilidad de tecnologías emergentes de teledetección satelital permite estimar \emph{in situ} diversos parámetros biofísicos y químicos de los cultivos de forma rápida, sin costos y a escala de chacra. En esta línea, el uso de datos abiertos de la misión satelital de Sentinel-2 observa la energía electromagnética terrestre a una alta resolución temporal ($\mathbb{<}7$ días), espectral (+3 bandas) y espacial ($10$ o $20$ m de píxel cuadrado), permitiría proyectar de forma precisa el crecimiento del cultivo. Específicamente, estas observaciones se utilizan para caluclar el Índice de Vegetación de Diferencia Normalizada (NDVI) que es un indicador directo del vigor de las plantas, y en efecto un estimador de los parámetros biofísicos de los cultivos. Por lo tanto, si el NDVI presenta una dinámica similar a la acumulación de la biomasa, su proyección con la función $\beta$ aumentaría la precisión del diagnóstico nutricional al estimar el crecimiento potencial del cultivo.
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
+Para llevar a cabo este ajuste de la función $\beta$ y estimar sus parámetros a partir de observaciones iniciales de NDVI, resulta particularmente sólido utilizar la inferencia bayesiana. Bajo este enfoque, se parte de un conocimiento inicial acerca de los parámetros (representado por un \emph{prior}) y se actualiza dicha información conforme se obtienen más mediciones de NDVI a lo largo del ciclo de cultivo. De esta manera, la distribución posterior de los parámetros de la función $\beta$ va reduciendo su dispersión aumentando la precisión en la proyección del NDVI. Este proceso no solo aprovecha los datos iniciales para predecir el crecimiento potencial, sino que también permite incorporar ajustes a medida que surgen nuevas observaciones de NDVI. Por lo tanto, la precisión del enfoque bayesiano para predecir el NDVI potencial del cultivo aumenta con el ciclo fenológico, y en efecto, también la precisión del diagnóstico nutricional.
 
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+En la actualidad, la inteligencia artificial está siendo utilizada exitosamente para monitorear diversos parámetros biofísicos y químicos en cultivos y pasturas. Estudios previos han utilizado eficazmente datos históricos de NDVI, temperaturas y precipitación para predecir valores futuros del índice. En esta línea de investigación, un estudio reportó que las Redes Neuronales Artificiales (ANN) predicen con precisión el NDVI futuro de maíz (\emph{Zea mays L.}) en el corto plazo (5-15 días). En este estudio, las ANN fueron entrenadas con el NDVI, índice de diferencia de agua normalizado (NDWI), precipitaciones acumuladas (GPM) y grados días acumulados (AGDD).  Cabe mencionar, que además de estas variables agroclimáticas existen otras que determinan el crecimiento de la cebada, como lo son el coeficiente fototermal (Q) y fotoperíodo (P). También son determinantes las variables de manejo como el cultivar, fecha de siembra y dosis de nitrógeno (N). Por otro lado, en pasturas de campo natural se ha demostrado que el NDVI puede ser predicho en el largo plazo (1-3 meses). Esto se ha logrado a través de desarrollo de modelo híbridos, que combinan modelos paramétricos sigmoideos, similares a la función $\beta$, y algoritmos de ANN. Por lo tanto, las ANN permitirían proyectar el NDVI potencial de la cebada con la integración de los parámetros ajustados de la función $\beta$, variables agroclimáticas y de manejo, aumentando la precisión en el diagnóstico nutricional del cultivo.
+
+En resumen, el NDVI es un fiel indicador del crecimiento de las plantas y su predicción temprana incrementaría la precisión del diagnóstico nutricional. Sin embargo, su proyección durante el ciclo del cultivo no ha investigada en profundidad. Por lo tanto, este trabajo tiene como objetivo i) la predecir el NDVI máximo del cultivo a partir de observaciones que van desde la siembra hasta los 45, 60 y 75 DDS, y ii) evaluar si las variables agroclimáticas y de manejo contribuyen a mejorar la precisión en la estimación del índice (Bayes vs ANN).
+
+\subsection{Metodología}
+\label{sec:descripcion}
+La Figura 1 muestra el diagrama de flujo de trabajo para predecir el NDVI potencial de lotes comerciales de producción de cebada con destino industrial durante las campañas 2023 y 2024. La información inicial son polígonos georreferencias (JSON) con información de fecha de siembra, cultivar y dosis de N (kg ha\textsuperscript{-1}). A partir de éstos, se recolectarán paralelamente de datos meteorológicos y satelitales.  Luego de recolectadas las observaciones, los datos se particionarán según su destino de análisis; calibración (cebada 2023) y testeo (cebada 2024).  Durante la modelación y el testeo, se utilizarán conjuntos de datos truncados temporalmente a los 45, 60 y 75 DDS. Las predicciones de los modelos se realizarán empleando la información disponible hasta cada uno de estos límites temporales. El modelado bayesiano consistirá en predecir el NDVI potencial a partir de un prior de los parámetros de la curva $\beta$ y las observaciones de NDVI obtenidas en los tres conjuntos de datos truncados (NDVI$_{45/60/75}$). Por otro lado, para cada uno de los tres períodos mencionados, el entrenamiento de la ANN se dividirán datos de entrenamiento (75 \%) y de validación (25 \%) aleatoriamente para una validación cruzada de 4 subconjuntos rotativos. La información para entrenar estas redes será la agroclimática, de manejo y del NDVI diario estimado con la función $\beta$ como $X_i$ y como $y$ el parámetro de N wmax obtenido en la parametrización. Una vez terminada la etapa de calibración de los modelos, se realizará un testeo para cada uno de los períodos de predicción utilizando los datos de la cebada 2024, donde se calcularán las métricas de error predictivo según el NDVI potencial predicho y el observado.   
+
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.65\textwidth]{./Figuras/diagBloques.png}
-\caption{Diagrama en bloques del sistema.}
-\label{fig:diagBloques}
+\includegraphics[width=.95\textwidth]{./Figuras/Flujo_de_Trabajo.png}
+\caption{Diagrama del flujo de trabajo}
+\label{fig:Flujo_de_Trabajo}
 \end{figure}
 
-\vspace{25px}
 
-El tamaño del texto en TODAS las figuras debe ser adecuado \textbf{para que NO pase lo que ocurre en la figura \ref{fig:diagBloques}}, donde el lector debe esforzarse para poder leer el texto. 
+\subsubsection{Datos agrometeorológicos}
+\label{sec:descripcion}
+Los datos agrometeorológicos serán descargados desde NASA power utilizando el centroide de cada chacra. Las varaibles que se obtendrán diariamente registros de precipitación (PP), temperatura (T), fotoperíodo (P) y radición (R). A partir de estos se calcuilarán la GPM, los AGDD y el Q para cada día ($i$-ésimo) hasta el último día disponible ($n$):
 
-Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama. Se recomienda evitar colores primarios (como rojo, verde o cyan) y usar la gama de colores pastel.
+\begin{equation}
+\label{eq:GPM}
+\text{GPM} = \sum_{i=1}^{n} PP_{i}
+\end{equation}
 
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
+\begin{equation}
+\label{eq:AGDD}
+\text{AGDD} = \sum_{i=1}^{n} GDD_{i}
+\end{equation}
+
+\begin{equation}
+\label{eq:Q}
+Q_i = \frac{R_i}{T_i - T_{\text{base}}}
+\end{equation}
+
+
+\subsubsection{Datos satelitales}
+\label{sec:descripcion}
+
+Para este estudio bianual y de extensa cobertura, se utilizará la plataforma Google Earth Engine para el procesamiento eficiente de los datos de reflectancia de nivel 2-A armonizados del satélite Sentinel-2. Este nivel de producto se caracteriza por correcciones geométricas y radiométricas pre-aplicadas, presentando una precisión posicional nominal de 3 metros y una resolución radiométrica de 12 bits. Para obtener estos datos, en cada chacra se creará un grilla de puntos distanciados cada 10 m. A partir de estas observaciones, se calculará el NDVI como la diferencia normalizada entre la reflectancia ($\alpha$) en el infrarrojo cercano (833 nm, $\pm$ 106 nm, pixel 10 m) y en el rojo (665 nm, $\pm$ 31 nm, pixel 10 m). 
+
+\begin{equation}
+\text{NDVI} = \frac{\alpha_{\text{infrarrojo}} - \alpha_{\text{rojo}}}{\alpha_{\text{infrarrojo}} + \alpha_{\text{rojo}}} \label{eq:ndvi_def}
+\end{equation}
+
+Una vez calculado el NDVI en cada punto de la grilla, se seleccionaran los cinco más representativos clasificando sus máximos valores registrado en quantiles. Entonces, en cada chacra estos puntos representarán el mínimo, cuantil dos, tres y cuatro, y el máximo, del conjunto de datos con los máximos valores NDVI alcanzados. Esto se para obtener una representatividad de la variación del NDVI potencial a escala de lote.  
+
+
+\subsubsection{Función $\beta$}
+\label{sec:descripcion}
+
+Dado que el comportamiento del NDVI a lo largo del ciclo de crecimiento del cultivo presenta una dinámica similar a la de las plantas, se ajustará la función $\beta$ porque modela con precisión la acumulación de biomasa en función de los DDS. A diferencia de otros modelos sigmoides, esta función incorpora parámetros biológicamente interpretables, como se muestra en la Figura \ref{fig:Curva_Beta }. Además, su estructura matemática permite modelar de manera continua la evolución de la biomasa sin generar discontinuidades en la transición entre fases de crecimiento, proporcionando estimaciones más realistas y ajustadas a la naturaleza determinante del crecimiento de estos cultivos. Por lo tanto, la parametrización de la dinámica del NDVI mediante la función $\beta$ ofrece una estrategia promisoria para la proyección temprana de la biomasa acumulada en cebada.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=.5\textwidth]{./Figuras/Curva_Beta.png}
+    \caption{Dinámica temporal observada (puntos) y ajustada mediante la función de crecimiento beta (curva) de la biomasa aérea seca en trigo de invierno (datos de Gregory et al., 1978). Los parámetros de la función beta son los siguientes, $w_b$: biomasa inicial; $w_{\max}$: biomasa máxima alcanzada; $t_b$: tiempo de inicio del crecimiento significativo; $t_m$: punto de inflexión (tasa de crecimiento máxima); $t_e$: tiempo en el que finaliza el crecimiento.}
+    \label{fig:Curva_Beta }
+\end{figure}
+
+
+
+Estos parámetros permiten describir con precisión el patrón sigmoide del crecimiento, caracterizando tanto la fase inicial lenta, como el período de rápido crecimiento y la fase final de estabilización. 
+
+La ecuación para calcular estos parámetros mediante mínimos cuadrados no lineales (nls) es la siguiente
+
+\begin{equation}
+\label{eq:betaGrowth}
+w = w_b \;+\; \bigl(w_{\max} - w_b\bigr) 
+        \left(1 + \frac{t_e - t}{t_e - t_m}\right)
+        \left(\frac{t - t_b}{t_e - t_b}\right)^{\!\frac{t_m - t_b}{t_e - t_m}}
+\end{equation}
+
+sujeto a la condición \(t_b \;\leq\; t_m \;<\; t_e\).
+
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces \textbf{solo dejarla en el rol más importante}. 
-
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, \textbf{no debe ser colocado también como miembro del equipo}.
-
-
 \begin{table}[ht]
-%\caption{Identificación de los interesados}
-%\label{tab:interesados}
-\begin{tabularx}{\linewidth}{@{}|l|X|X|l|@{}}
+\caption{Identificación de los interesados}
+\label{tab:interesados}
+\begin{tabularx}{\linewidth}{@{}|l|X|X|X|@{}} 
 \hline
 \rowcolor[HTML]{C0C0C0} 
-Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
-Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
-Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Rol           & Nombre y Apellido & Organización  & Puesto         \\ \hline
+Auspiciante   &   	    -		  & 	   -  	  &     -  	       \\ \hline
+Cliente       & \clientename      & \empclientename & Investigador \\ \hline
+Impulsor      & \clientename      & \empclientename & Investigador \\ \hline
+Responsable   & \authorname       & FIUBA         & Alumno         \\ \hline
+Colaboradores & PhD. MSc. Ing. Agr. José Paruelo \newline
+				Dr. Ing. Agr. Sebastian Mazzilli  & INIA  \newline
+													INIA  & Investigador  \newline
+													        Investigador \\ \hline
+Orientadores  & \supname \newline 
+                \cosupname       & \pertesupname \newline
+                				   \pertecosupname  & Director del Trabajo Final \newline 
+                                                      Co-Director del Trabajo Final \\ \hline
+
+% NO PUDE ASIGNAR MIEMBROS Y LUEGOS LLAMARLOS EN LA TABLA
+%Equipo        & \miembro1 \newline 
+%				\miembro2          &              	&        	\\ \hline
+
+Equipo        & 	   -		 & 	     -		 & 	     -		  \\ \hline
+Opositores    & 	   -		 & 	     -		 & 	     -		  \\ \hline
+Usuario final & 	   -		 & 	     -		 & 	     -		  \\ \hline
 \end{tabularx}
 \end{table}
-
-El Director suele ser uno de los orientadores.
-
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
- 
-Por ejemplo:
-\begin{itemize}
-	\item Orientador: la Dra. Ing. María Gómez es experta en la temática y va a ayudar con la definición de los requerimientos y el desarrollo del firmware del embebido.
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
-\end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
+Este proyecto busca desarrollar una herramienta complementaría al diagnóstico nutricional actual de cebada que permita estimar indicadores, como el NDVI, del crecimiento potencial de los cultivos. Esto permitiría a los productores desarrollar estrategias de manejos anticipadas, evitando pérdidas en el rendimiento potencial del cultivo y alcanzado una concentración de proteína en grano óptima para la calidad maltera. 
 
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
-
-Se recomienda que sea solo un párrafo que continúe con la idea de la frase ``el propósito de este proyecto es...'' (omitir la frase, ya que está en el título de la sección).
-\end{consigna}
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
-
-Se refiere al trabajo que se va a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto. Por ejemplo:
+En este proyecto se incluye información sobre los sistemas productivos de cebada con destino industrial para la empresa AmBev. Dada las limitaciones en tiempo para realizar el proyecto dentro del contexto académico de la especialización, no se incluyen información de la producción de cebada 2025 y mediciones de biomasa realizadas en 2024 y 2025.
 
 El proyecto incluye:
 \begin{itemize}
-	\item Ítem 1.
-	\item Ítem 2.
+	\item Información georeferencia de la producción de cebada 2023 y 2024 para miles de chacras.
 		\begin{itemize}
-		\item Subítem 1.
-		\item Subítem 2.
-		\item ...
+		\item Polígono de la chacra.
+		\item Fecha de siembra
+		\item Cultivar.
+		\item Aplicación de fertilizantes		
 		\end{itemize}
-	\item ...
+	\item Datos agroclimáticos por chacra
+		\begin{itemize}
+		\item Precipitación.
+		\item Temperatura diaria.
+		\item Fotoperíodo.
+		\item Grados días.
+		\item Radiación.
+		\item Coeficiente fototermal		
+		\end{itemize}
+	\item Datos satelitales para cinco puntos representativos por chacra
+		\begin{itemize}
+		\item NDVI.
+		\item Parámetros de la cruva $\beta$.
+		\end{itemize}
 	
 \end{itemize}
 
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
+El presente proyecto no incluye información sobre el corriente año (2025) y 60 observaciones realizadas en chacras que produjeron cebada en el 2024, y otras mediciones que se realizarán en el 2025, porque la dimensión del proyecto está acotada a la aplicación de la inteligencia artificial en datos de teledetección. No obstante, se podrían incluir los datos 2024 para ver si el NDVI estimado se correlaciona con las variables observadas que son:
+\begin{itemize}
+	\item Observaciones en espigazón.
+		\begin{itemize}
+		\item Biomasa aérea seca y fresca.
+		\item Concentración y acumulación de nitrógeno en la biomasa.
+		\item Índice de nutrición nitrogenada (INN).
+		\item Índice de diagnóstico hídrico (WDI).		
+		\end{itemize}
+	\item Observados en cosecha.
+		\begin{itemize}
+		\item Rendimiento en grano.
+		\item Concentración y acumulación de nitrógeno en grano.
+		\item Proteína en grano.
+		\item Índice de cosecha.
+		\item Calidad de grano.
+		\end{itemize}
+	
+\end{itemize}
 
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-	\item Supuesto 1.
-	\item Supuesto 2.
-	\item ...
+	\item Se dispondrá de la asesoría de expertos en la tematica de agronomía, computación y percepción remota.
+	\item El tiempo requerido para el entrenamiento de modelos será adecuado para cumplir con los requisitos curriculares de la especialización.
+	\item La financiación del proyecto ya está cubierta por las instituciones del estudiante.
 \end{itemize}
 
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
 
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
