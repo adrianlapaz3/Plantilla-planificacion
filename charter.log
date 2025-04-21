@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.18)  20 APR 2025 21:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.3.18)  21 APR 2025 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1150,44 +1150,44 @@ Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 638.
  [20]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 683.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 695.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [21]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 732.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 752.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [22]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 771.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 792.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
 
 [23]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 801.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 823.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [24]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 832.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 853.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [25]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 844.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 866.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [26]
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 888.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 910.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
  [27] 
 AED: lastpage setting LastPage
 File: ./Figuras/logoFIUBA.pdf Graphic file (type pdf)
 <use ./Figuras/logoFIUBA.pdf>
-Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 924.
+Package pdftex.def Info: ./Figuras/logoFIUBA.pdf  used on input line 946.
 (pdftex.def)             Requested size: 99.58464pt x 33.19096pt.
 [28] (charter.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -1228,9 +1228,9 @@ fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on charter.pdf (28 pages, 1399237 bytes).
+Output written on charter.pdf (28 pages, 1398445 bytes).
 PDF statistics:
- 542 PDF objects out of 1000 (max. 8388607)
+ 545 PDF objects out of 1000 (max. 8388607)
  155 named destinations out of 1000 (max. 500000)
  225 words of extra memory for PDF output out of 10000 (max. 10000000)
 
